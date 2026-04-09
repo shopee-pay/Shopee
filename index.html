@@ -1,100 +1,176 @@
+ 
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plugin Shopee</title>
-
+<title>Login</title>
 <style>
-body {
-  font-family: Arial;
-  margin: 0;
-  background: #f5f5f5;
-}
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+    }
 
-header {
-  background: #ee4d2d;
-  color: white;
-  padding: 15px;
-  text-align: center;
-  font-weight: bold;
-}
+    .container {
+        max-width: 400px;
+        margin: auto;
+        background: white;
+        min-height: 100vh;
+        padding: 20px;
+    }
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 10px;
-}
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-.card {
-  background: white;
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
-}
+    .logo {
+        text-align: center;
+        font-size: 40px;
+        color: #ee4d2d;
+        margin-bottom: 20px;
+    }
 
-.card img {
-  width: 100%;
-}
+    .input-group {
+        margin-bottom: 15px;
+    }
 
-.price {
-  color: #ee4d2d;
-  font-weight: bold;
-}
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
 
-button {
-  background: #ee4d2d;
-  color: white;
-  border: none;
-  padding: 8px;
-  width: 100%;
-  border-radius: 5px;
-}
+    .forgot {
+        text-align: right;
+        font-size: 12px;
+        color: #007bff;
+        margin-top: 5px;
+    }
+
+    .btn-login {
+        width: 100%;
+        padding: 12px;
+        background: #ccc;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .divider {
+        text-align: center;
+        margin: 20px 0;
+        color: #999;
+    }
+
+    .social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        background: #fff;
+    }
+
+    .social-btn img {
+        width: 20px;
+        margin-right: 10px;
+    }
+
+    .footer {
+        text-align: center;
+        font-size: 13px;
+        margin-top: 20px;
+    }
+
+    .footer a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .fingerprint {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        font-size: 13px;
+    }
+
+    .switch {
+        width: 40px;
+        height: 20px;
+        background: #4CAF50;
+        border-radius: 20px;
+        position: relative;
+    }
+
+    .switch::after {
+        content: '';
+        width: 18px;
+        height: 18px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 1px;
+        right: 1px;
+    }
 </style>
 </head>
-
 <body>
 
-<header>Produk Shopee</header>
+<div class="container">
+    <h2>Log In</h2>
 
-<div class="container" id="produk"></div>
+    <div class="logo">🛍️</div>
 
-<script>
-const dataProduk = [
-  {
-    nama: "Sepatu Keren",
-    harga: "Rp50.000",
-    gambar: "https://via.placeholder.com/150",
-    link: "https://shopee.co.id/"
-  },
-  {
-    nama: "Tas Murah",
-    harga: "Rp30.000",
-    gambar: "https://via.placeholder.com/150",
-    link: "https://shopee.co.id/"
-  }
-];
-
-let tampil = "";
-
-dataProduk.forEach(p => {
-  tampil += `
-    <div class="card">
-      <img src="${p.gambar}">
-      <p>${p.nama}</p>
-      <p class="price">${p.harga}</p>
-      <button onclick="beli('${p.link}')">Beli</button>
+    <div class="input-group">
+        <input type="text" placeholder="No. Handphone/Email/Username">
     </div>
-  `;
-});
 
-document.getElementById("produk").innerHTML = tampil;
+    <div class="input-group">
+        <input type="password" placeholder="Password">
+        <div class="forgot">Lupa?</div>
+    </div>
 
-function beli(link) {
-  window.location.href = link;
-}
-</script>
+    <button class="btn-login">Log In</button>
+
+    <div class="divider">ATAU</div>
+
+    <div class="social-btn">
+        <img src="https://img.icons8.com/color/48/google-logo.png">
+        Log In dengan Google
+    </div>
+
+    <div class="social-btn">
+        <img src="https://img.icons8.com/color/48/facebook.png">
+        Log In dengan Facebook
+    </div>
+
+    <div class="social-btn">
+        <img src="https://img.icons8.com/color/48/whatsapp.png">
+        Log In dengan WhatsApp
+    </div>
+
+    <div class="social-btn">
+    </div>
+
+    <div class="footer">
+        Belum punya akun? <a href="#">Daftar</a>
+    </div>
+
+    <div class="fingerprint">
+        <span>Aktifkan Autentikasi Sidik Jari</span>
+        <div class="switch"></div>
+    </div>
+</div>
 
 </body>
 </html>

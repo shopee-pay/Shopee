@@ -83,3 +83,41 @@ body {
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Demo Notifikasi Telegram</title>
+</head>
+<body>
+
+<h2>Demo Kirim Notifikasi</h2>
+
+<button onclick="kirimNotif()">Kirim Notifikasi</button>
+
+<script>
+function kirimNotif() {
+  var token = "ISI_BOT_TOKEN_KAMU";
+  var chat_id = "ISI_CHAT_ID_KAMU";
+  var pesan = "Ada aktivitas tombol diklik!";
+
+  var url = "https://api.telegram.org/bot" + token + "/sendMessage";
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: chat_id,
+      text: pesan
+    })
+  })
+  .then(res => alert("Notifikasi terkirim"))
+  .catch(err => alert("Gagal kirim"));
+}
+</script>
+
+</body>
+</html>

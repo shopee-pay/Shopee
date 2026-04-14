@@ -1,10 +1,107 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>MyShop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyShop App</title>
+
+<!-- ICON CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+}
+
+/* Header */
+.header {
+  background: #ff5722;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Container */
+.container {
+  padding: 20px;
+}
+
+/* Menu card */
+.menu {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.card {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Icon */
+.icon {
+  font-size: 30px;
+  color: #ff5722;
+  margin-bottom: 10px;
+}
+
+/* Text */
+.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+</style>
 </head>
+
 <body>
-  <h1>Website Saya Jalan 🚀</h1>
+
+<div class="header">
+  MyShop
+</div>
+
+<div class="container">
+
+  <h3>Pilih Menu</h3>
+
+  <div class="menu">
+
+    <div class="card" onclick="goLogin()">
+      <div class="icon"><i class="fas fa-user"></i></div>
+      <div class="title">Login</div>
+    </div>
+
+    <div class="card" onclick="goDashboard()">
+      <div class="icon"><i class="fas fa-store"></i></div>
+      <div class="title">Dashboard</div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function goLogin() {
+  window.location.href = "login.html";
+}
+
+function goDashboard() {
+  window.location.href = "dashboard.html";
+}
+</script>
+
 </body>
 </html>

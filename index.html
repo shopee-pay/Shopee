@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyShop App</title>
+<title>MyShop Menu</title>
 
 <style>
 body {
@@ -25,49 +26,35 @@ body {
 /* Container */
 .container {
   padding: 20px;
+  text-align: center;
 }
 
-/* Card login */
-.card {
+/* Card pilihan */
+.menu-card {
   background: white;
   padding: 20px;
-  border-radius: 10px;
+  margin-top: 20px;
+  border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-/* Input */
-input {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 14px;
-}
-
-/* Button */
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 15px;
-  background: #ff5722;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-button:hover {
-  background: #e64a19;
+.menu-card:hover {
+  transform: scale(1.03);
 }
 
-/* Footer text */
-.footer {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 12px;
-  color: #888;
+/* Judul */
+.menu-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Deskripsi */
+.menu-desc {
+  font-size: 14px;
+  color: #666;
 }
 </style>
 </head>
@@ -79,23 +66,28 @@ button:hover {
 </div>
 
 <div class="container">
-  <div class="card">
-    <h3>Login</h3>
 
-    <input type="text" placeholder="Username / Email">
-    <input type="password" placeholder="Password">
+  <h3>Pilih Menu</h3>
 
-    <button onclick="login()">Masuk</button>
-
-    <div class="footer">
-      Demo UI saja (bukan login asli)
-    </div>
+  <div class="menu-card" onclick="pilih1()">
+    <div class="menu-title">Pilihan 1</div>
+    <div class="menu-desc">Masuk ke halaman Login</div>
   </div>
+
+  <div class="menu-card" onclick="pilih2()">
+    <div class="menu-title">Pilihan 2</div>
+    <div class="menu-desc">Masuk ke halaman Dashboard</div>
+  </div>
+
 </div>
 
 <script>
-function login() {
-  alert("Ini hanya tampilan UI (demo), belum ada backend.");
+function pilih1() {
+  window.location.href = "login.html";
+}
+
+function pilih2() {
+  window.location.href = "dashboard.html";
 }
 </script>
 

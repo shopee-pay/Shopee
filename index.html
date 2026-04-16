@@ -1,158 +1,64 @@
+
 <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyShop App</title>
+<html>
+	<head>
+		<script type="text/javascript">
+		function unescapeHtml(escaped_str) {
+		    var div = document.createElement('div');
+		    div.innerHTML = escaped_str;
+		    var child = div.childNodes[0];
+		    return child ? child.nodeValue : null;
+		}
+		
+		function validateProtocol(url) {
+			var parser = document.createElement('a');
+		    parser.href = url;
+		    var protocol = parser.protocol.toLowerCase();
+			if ([ 'javascript:',  'vbscript:',  'data:', 'ftp:',':' , ' '].indexOf(protocol) < 0) {
+				return url;
+			}
+			return null;
+		}
+		
+		function validate(url) {
+			var unescaped_value = unescapeHtml(url);
+			if (unescaped_value && validateProtocol(unescaped_value)) {
+				return unescaped_value;
+			}
+			return '/';
+		}
+			window.onload = function() {
+				const fallbackFunction = function() {
+					if (document.webkitHidden || document.hidden) { return; }
+					window.top.location.replace(validate("undefined"));
+				};
+                const redirectFunction = function() {
+                    window.top.location.replace(validate("market://details?id=id.dana"));
+                }
+				if ((navigator.userAgent.match(/Chrome/) && navigator.userAgent.match("Version/")) ||
+						navigator.userAgent.match("\\[FB") ||
+						navigator.userAgent.match("Instagram")) {
+					const setURIFunction = function() {
+                        redirectFunction();
+						setTimeout(fallbackFunction, 750-250);
+					};
+					setTimeout(setURIFunction, 250);
+					return;
+				}
+				else if (navigator.userAgent.match("KAKAO") ||
+							navigator.userAgent.match("NAVER") ||
+							navigator.userAgent.match("Firefox")) {
+					redirectFunction();
+				}
+				else if (!(navigator.userAgent.match("OPR") && !navigator.userAgent.match("Android 8"))) {
+					window.top.location.replace(validate("market://details?id=id.dana"));
+				}
+				setTimeout(fallbackFunction, 750);
+			};
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-}
-
-/* HEADER */
-.header {
-  background: #ff5722;
-  padding: 10px;
-  color: white;
-}
-
-.search {
-  display: flex;
-  background: white;
-  border-radius: 8px;
-  padding: 5px 10px;
-}
-
-.search input {
-  border: none;
-  flex: 1;
-  outline: none;
-}
-
-/* MENU ICON */
-.menu {
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  background: white;
-}
-
-.menu div {
-  text-align: center;
-  font-size: 12px;
-}
-
-.menu i {
-  font-size: 20px;
-  color: #ff5722;
-}
-
-/* PRODUK */
-.products {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 10px;
-}
-
-.card {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.card img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.price {
-  color: #ff5722;
-  font-weight: bold;
-}
-
-/* NAVBAR BAWAH */
-.navbar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: white;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-  border-top: 1px solid #ddd;
-}
-
-.navbar i {
-  font-size: 20px;
-  color: #888;
-}
-
-.navbar i.active {
-  color: #ff5722;
-}
-</style>
-</head>
-
-<body>
-
-<!-- HEADER -->
-<div class="header">
-  <div class="search">
-    <input type="text" placeholder="Cari produk...">
-    <i class="fas fa-search"></i>
-  </div>
-</div>
-
-<!-- MENU -->
-<div class="menu">
-  <div><i class="fas fa-home"></i><br>Home</div>
-  <div><i class="fas fa-list"></i><br>Kategori</div>
-  <div><i class="fas fa-shopping-cart"></i><br>Keranjang</div>
-  <div><i class="fas fa-user"></i><br>Akun</div>
-</div>
-
-<!-- PRODUK -->
-<div class="products">
-
-  <div class="card">
-    <img src="https://via.placeholder.com/150">
-    <div>Produk 1</div>
-    <div class="price">Rp10.000</div>
-  </div>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/150">
-    <div>Produk 2</div>
-    <div class="price">Rp20.000</div>
-  </div>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/150">
-    <div>Produk 3</div>
-    <div class="price">Rp30.000</div>
-  </div>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/150">
-    <div>Produk 4</div>
-    <div class="price">Rp40.000</div>
-  </div>
-
-</div>
-
-<!-- NAVBAR -->
-<div class="navbar">
-  <i class="fas fa-home active"></i>
-  <i class="fas fa-list"></i>
-  <i class="fas fa-shopping-cart"></i>
-  <i class="fas fa-user"></i>
-</div>
-
-</body>
+		</script>
+	</head>
+	<body>
+	</body>
 </html>

